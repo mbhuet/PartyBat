@@ -3,8 +3,15 @@ using System.Collections;
 
 public class Bug : MonoBehaviour {
 	Vector3 moveDir;
-	float speed = .5f;
+	public float speed = .5f;
 	bool spotted = false;
+
+	float maxSpread = 5;
+	public float spread = 0;
+	public int steadiness = 0;
+	
+	private int angleHold;
+	private float heldAngle;
 
 	TrailRenderer trail;
 
@@ -13,22 +20,14 @@ public class Bug : MonoBehaviour {
 		moveDir = Random.insideUnitSphere;
 		moveDir.z = 0;
 		moveDir.Normalize ();
-
-		//moveDir = Vector3.left;
-		/*
-		trail = GetComponent<TrailRenderer> ();
-		trail.time = 0;
-		trail.startWidth = transform.localScale.x;
-		trail.endWidth = transform.localScale.x;
-		*/
-
+	
 		SetColor (Color.black);
 		//StartCoroutine ("Show");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate (moveDir * Time.deltaTime * speed);
+		Move ();
 	}
 
 	void SetColor(Color c){
@@ -48,6 +47,26 @@ public class Bug : MonoBehaviour {
 		StartCoroutine("Show");		
 		//}
 	}
+
+	void Move(){
+
+		angleHold--;
+		if (angleHold <= 0) {
+			
+
+			heldAngle = Random.Range (-spread, spread);
+			
+
+			if (heldAngle == 0) heldAngle = .01f; //to prevent divide by 0 errors.
+
+			int maxHold = Random.Range(0,steadiness);
+			angleHold = maxHold;
+
+		}
+		this.transform.Rotate (0, 0, heldAngle);
+		this.transform.Translate (0, speed * Time.deltaTime, 0, Space.Self);
+	}
+
 
 
 	IEnumerator Show(){
@@ -76,7 +95,7 @@ public class Bug : MonoBehaviour {
 		SetColor (Color.black);
 		GameObject.Destroy(trail.gameObject);
 		trail = null;
-		Debug.Log ("here");
+//		Debug.Log ("here");
 		//trail.enabled = false;
 		spotted = false;
 	
