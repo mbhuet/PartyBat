@@ -25,6 +25,7 @@ public class Bat : MonoBehaviour {
 
 	void Start () {
 		direction = Vector2.up;
+		rigidbody2D.velocity = direction * minSpeed;
 		backwardDir = new Vector2(-forwardDir.x, forwardDir.y);
 		//wave = transform.FindChild ("Sound").gameObject;
 		//wave.transform.localScale = Vector3.zero;
