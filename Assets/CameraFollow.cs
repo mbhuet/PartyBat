@@ -23,8 +23,5 @@ public class CameraFollow : MonoBehaviour {
 		cameraTarget = target.position - Vector3.forward * 15;
 
 		transform.position = (Vector3.Lerp(transform.position, cameraTarget, speed));
-
-		
-	
 	}
 }

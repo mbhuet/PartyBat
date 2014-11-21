@@ -6,9 +6,10 @@ public class Bat : MonoBehaviour {
 	// Use this for initialization
 	public float rotate = 1;
 	public float speed = 1;
-	private float minSpeed = 6;
+	public float minSpeed = 1;
+	public float maxSpeed = 5;
 	public Vector2 forwardDir = new Vector2(1f,1f);
-	public float scaleFactor = 50f;
+	public float scaleFactor = 2f;
 	private Vector2 backwardDir;
 	Vector2 direction;
 
@@ -25,7 +26,6 @@ public class Bat : MonoBehaviour {
 
 	void Start () {
 		direction = Vector2.up;
-		rigidbody2D.velocity = direction * minSpeed;
 		backwardDir = new Vector2(-forwardDir.x, forwardDir.y);
 		//wave = transform.FindChild ("Sound").gameObject;
 		//wave.transform.localScale = Vector3.zero;
@@ -35,29 +35,27 @@ public class Bat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		speed = rigidbody2D.velocity.magnitude;
-		if (speed < minSpeed){
-			//normalize velocity and multiply by speed
-			rigidbody2D.velocity = rigidbody2D.velocity.normalized * minSpeed;
-			//StartCoroutine("Echo");		
-		}
+		speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+
 		
-		if (speed >0)
-		speed -= Time.deltaTime / 2;
-
-
+		if (speed > minSpeed)
+			speed -= Time.deltaTime / 2;
 
 		//movement
+
 		//rotation toward direction of movement - magic trigonometry maths!
+		/*
 		if (rigidbody2D.velocity.magnitude > .01f) {
 			float angle = Mathf.Atan2(rigidbody2D.velocity.y, rigidbody2D.velocity.x) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
-		}
+		}*/
 
+		transform.Rotate(0,0, Input.GetAxis("Horizontal") * rotate);
+
+		transform.Translate(transform.up * speed * Time.deltaTime, Space.Self);
 		//use spacebar to apply force in direction of key player is holding
 		if(Input.GetButton("Jump")){
-			rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Horizontal") * scaleFactor);
-			rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Vertical") * scaleFactor);
+			speed += Time.deltaTime * scaleFactor;
 		}
 
 		/*
@@ -87,10 +85,6 @@ public class Bat : MonoBehaviour {
 			Debug.Log("left");
 		}*/
 		//end movement
-
-
-
-
 	}
 
 	IEnumerator Echo(){
