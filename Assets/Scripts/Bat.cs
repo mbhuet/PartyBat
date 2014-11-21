@@ -45,8 +45,8 @@ public class Bat : MonoBehaviour {
 
 		//movement
 
-		rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Horizontal"));
-		rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Vertical"));
+		rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Horizontal"));
+		rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Vertical"));
 
 		/*
 		Vector3 forward = transform.up;
