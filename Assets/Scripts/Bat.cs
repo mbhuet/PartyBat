@@ -6,8 +6,8 @@ public class Bat : MonoBehaviour {
 	// Use this for initialization
 	public float rotate = 1;
 	public float speed = 1;
-	public Vector2 forwardDir = new Vector2(1f,100f);
-	public float scaleFactor = 500f;
+	public Vector2 forwardDir = new Vector2(25f,100f);
+	public float scaleFactor = 90000f;
 	private Vector2 backwardDir;
 	Vector2 direction;
 
