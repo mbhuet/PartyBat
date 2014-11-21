@@ -6,6 +6,9 @@ public class Bat : MonoBehaviour {
 	// Use this for initialization
 	public float rotate = 1;
 	public float speed = 1;
+	public Vector2 forwardDir = new Vector2(1f,100f);
+	public float scaleFactor = 500f;
+	private Vector2 backwardDir;
 	Vector2 direction;
 
 	public AudioClip songClip;
@@ -21,6 +24,7 @@ public class Bat : MonoBehaviour {
 
 	void Start () {
 		direction = Vector2.up;
+		backwardDir = new Vector2(-forwardDir.x, forwardDir.y);
 		//wave = transform.FindChild ("Sound").gameObject;
 		//wave.transform.localScale = Vector3.zero;
 		//shockwave = transform.FindChild ("Shockwave").particleSystem;
@@ -37,11 +41,29 @@ public class Bat : MonoBehaviour {
 		if (speed >0)
 		speed -= Time.deltaTime / 2;
 		//movement
+		/*
 		Vector3 forward = transform.up;
 		direction = new Vector2 (forward.x, forward.y);
 		transform.Rotate (0, 0, -1*Input.GetAxis ("Horizontal") * rotate);
 
-		rigidbody2D.velocity = direction*speed;
+		rigidbody2D.velocity = direction*speed;*/
+
+		Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+		if(Input.GetKeyDown(KeyCode.RightArrow)){
+			rb.AddForce(forwardDir * scaleFactor);
+			Debug.Log("right");
+		}
+
+		if(Input.GetKeyDown(KeyCode.UpArrow)){
+			rb.AddForce(transform.up * scaleFactor);
+			Debug.Log("up");
+		}
+
+		if(Input.GetKeyDown(KeyCode.LeftArrow)){
+			rb.AddForce(backwardDir * scaleFactor);
+			Debug.Log("left");
+		}
 		//end movement
 
 
