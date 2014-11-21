@@ -13,12 +13,18 @@ public class CameraFollow : MonoBehaviour {
 		cameraTarget = target.position + Vector3.up * 3 - Vector3.forward * 15;
 		transform.position = cameraTarget;
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Bat>();
-			
-			}
-			
-			// Update is called once per frame
-			void Update () {
-				cameraTarget = target.position + Vector3.up * 3 - Vector3.forward * 15;
-				transform.position = (Vector3.Lerp(transform.position, cameraTarget, speed));
-			}
-		}
+
+		
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		cameraTarget = target.position + Vector3.up * 3 - Vector3.forward * 15;
+
+		transform.position = (Vector3.Lerp(transform.position, cameraTarget, speed));
+
+		
+	
+	}
+}
