@@ -6,6 +6,7 @@ public class Bat : MonoBehaviour {
 	// Use this for initialization
 	public float rotate = 1;
 	public float speed = 1;
+	private float minSpeed = 6;
 	public Vector2 forwardDir = new Vector2(1f,1f);
 	public float scaleFactor = 50f;
 	private Vector2 backwardDir;
@@ -33,20 +34,30 @@ public class Bat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.UpArrow)) {
-			if (speed < 3)
-				speed += Time.deltaTime*2;
+		speed = rigidbody2D.velocity.magnitude;
+		if (speed < minSpeed){
+			//normalize velocity and multiply by speed
+			rigidbody2D.velocity = rigidbody2D.velocity.normalized * minSpeed;
 			//StartCoroutine("Echo");		
 		}
+		
 		if (speed >0)
 		speed -= Time.deltaTime / 2;
 
 
 
 		//movement
+		//rotation toward direction of movement - magic trigonometry maths!
+		if (rigidbody2D.velocity.magnitude > .01f) {
+			float angle = Mathf.Atan2(rigidbody2D.velocity.y, rigidbody2D.velocity.x) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
+		}
 
-		rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Horizontal"));
-		rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Vertical"));
+		//use spacebar to apply force in direction of key player is holding
+		if(Input.GetButton("Jump")){
+			rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Horizontal") * scaleFactor);
+			rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Vertical") * scaleFactor);
+		}
 
 		/*
 		Vector3 forward = transform.up;
