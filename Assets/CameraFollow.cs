@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		cameraTarget = target.position + Vector3.up * 3 - Vector3.forward * 15;
+		cameraTarget = target.position - Vector3.forward * 15;
 		transform.position = cameraTarget;
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Bat>();
 
@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		cameraTarget = target.position + Vector3.up * 3 - Vector3.forward * 15;
+		cameraTarget = target.position - Vector3.forward * 15;
 
 		transform.position = (Vector3.Lerp(transform.position, cameraTarget, speed));
 
