@@ -6,8 +6,8 @@ public class Bat : MonoBehaviour {
 	// Use this for initialization
 	public float rotate = 1;
 	public float speed = 1;
-	public Vector2 forwardDir = new Vector2(25f,100f);
-	public float scaleFactor = 90000f;
+	public Vector2 forwardDir = new Vector2(1f,1f);
+	public float scaleFactor = 50f;
 	private Vector2 backwardDir;
 	Vector2 direction;
 
@@ -40,7 +40,14 @@ public class Bat : MonoBehaviour {
 		}
 		if (speed >0)
 		speed -= Time.deltaTime / 2;
+
+
+
 		//movement
+
+		rigidbody2D.AddForce(Vector2.up * Input.GetAxis("Horizontal"));
+		rigidbody2D.AddForce(Vector2.right * Input.GetAxis("Vertical"));
+
 		/*
 		Vector3 forward = transform.up;
 		direction = new Vector2 (forward.x, forward.y);
@@ -48,22 +55,25 @@ public class Bat : MonoBehaviour {
 
 		rigidbody2D.velocity = direction*speed;*/
 
-		Rigidbody2D rb = GetComponent<Rigidbody2D>();
+		//Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-		if(Input.GetKeyDown(KeyCode.RightArrow)){
-			rb.AddForce(forwardDir * scaleFactor);
+		/*if(Input.GetKeyDown(KeyCode.RightArrow)){
+			//rb.AddForce(forwardDir * scaleFactor);
+			rigidbody2D.AddForce(Input.GetAxis("Horizontal") * scaleFactor);			
 			Debug.Log("right");
 		}
 
 		if(Input.GetKeyDown(KeyCode.UpArrow)){
-			rb.AddForce(transform.up * scaleFactor);
+			//rb.AddForce(transform.up * scaleFactor);
+			rigidbody2D.AddForce(Vector2.up * scaleFactor);		
 			Debug.Log("up");
 		}
 
 		if(Input.GetKeyDown(KeyCode.LeftArrow)){
-			rb.AddForce(backwardDir * scaleFactor);
+			//rb.AddForce(backwardDir * scaleFactor);
+			rigidbody2D.AddForce(forwardDir * scaleFactor);	
 			Debug.Log("left");
-		}
+		}*/
 		//end movement
 
 
