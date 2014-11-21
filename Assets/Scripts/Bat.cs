@@ -35,11 +35,13 @@ public class Bat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		Debug.DrawLine (transform.position, transform.position + transform.up * 3, Color.yellow);
 		speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
 
 		
 		if (speed > minSpeed)
-			speed -= Time.deltaTime / 2;
+			speed -= Time.deltaTime * 5;
 
 		//movement
 
@@ -50,12 +52,12 @@ public class Bat : MonoBehaviour {
 			transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
 		}*/
 
-		transform.Rotate(0,0, Input.GetAxis("Horizontal") * rotate);
+		transform.Rotate(0,0, -Input.GetAxis("Horizontal") * rotate);
 
-		transform.Translate(transform.up * speed * Time.deltaTime, Space.Self);
+		transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
 		//use spacebar to apply force in direction of key player is holding
-		if(Input.GetButton("Jump")){
-			speed += Time.deltaTime * scaleFactor;
+		if(Input.GetButtonDown("Jump")){
+			speed += scaleFactor;
 		}
 
 		/*
