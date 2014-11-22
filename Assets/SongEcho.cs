@@ -40,10 +40,10 @@ public class SongEcho : MonoBehaviour {
 		
 		Light l = (GameObject.Instantiate (light, this.transform.position, Quaternion.identity) as GameObject).GetComponent<Light>();
 		l.spotAngle = 0;
-		Debug.Log (l);
+//		Debug.Log (l);
 		float lightAngle = 0;
 
-		float maxSize = 30;
+		float maxSize = 20;
 		float waveSpeed = 100;
 		GameObject wave = GameObject.Instantiate (soundWave, this.transform.position, Quaternion.identity) as GameObject;
 		float t = 0;

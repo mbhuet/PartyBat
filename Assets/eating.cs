@@ -20,17 +20,21 @@ public class eating : MonoBehaviour {
 	}
 
 	void Eat(Bug bug){
-		GameObject.Destroy (bug.gameObject);
-		particleSystem.Emit(10);
-		score++;
-		AudioSource.PlayClipAtPoint(eatSound, transform.position);
+						GameObject.Destroy (bug.gameObject);
+						particleSystem.Emit (10);
+						score++;
+						AudioSource.PlayClipAtPoint (eatSound, transform.position);
+
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
 //		Debug.Log ("Collision enter");
 		if (other.tag == "Bug") {
 			Bug bug = other.GetComponent<Bug>();
-			Eat(bug);
+			if (bug.spotted) {
+
+				Eat(bug);
+			}
 		}
 		if (other.tag == "tree") 
 		{
