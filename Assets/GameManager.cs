@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject bug;
 	GUIText timeText;
 	GUIText message;
-	public GameObject player;
+	GameObject player;
 
 	bool ended = false;
 
@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 		PlaceBugs ();
 		timeText = transform.FindChild ("Time").guiText;
 		message = transform.FindChild ("Message").guiText;
+		player = GameObject.Find ("Player");
 		message.enabled = false;
 
 	}
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour {
 		message.enabled = true;
 		if (player.GetComponent<eating>().score >= 30) 
 		{
-			message.text = "You Partied Hard!";
+			message.text = "You're a legend, Party Bat";
 		} 
 		else 
 		{

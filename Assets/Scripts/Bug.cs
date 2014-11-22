@@ -9,9 +9,13 @@ public class Bug : MonoBehaviour {
 	float maxSpread = 5;
 	public float spread = 0;
 	public int steadiness = 0;
+
+	public float fadeSpeed;
 	
 	private int angleHold;
 	private float heldAngle;
+
+	public float effectSpeed = 1;
 
 	TrailRenderer trail;
 
@@ -72,7 +76,7 @@ public class Bug : MonoBehaviour {
 
 	IEnumerator Show(){
 		spotted = true;
-		float effectSpeed = 1;
+		//float effectSpeed = 1;
 
 		//trail.enabled = true;
 		//trail.time = 5;
