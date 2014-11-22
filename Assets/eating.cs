@@ -5,6 +5,8 @@ public class eating : MonoBehaviour {
 	public GUIText text;
 	public float score;
 	public GameObject bug;
+	public AudioClip eatSound;
+
 	// Use this for initialization
 	void Start () {
 		score = 0;
@@ -20,6 +22,7 @@ public class eating : MonoBehaviour {
 	void Eat(Bug bug){
 		GameObject.Destroy (bug.gameObject);
 		particleSystem.Emit(10);
+		AudioSource.PlayClipAtPoint(eatSound, transform.position);
 		score++;
 	}
 
