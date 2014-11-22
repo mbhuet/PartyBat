@@ -4,7 +4,7 @@ using System.Collections;
 public class Bug : MonoBehaviour {
 	Vector3 moveDir;
 	public float speed = .5f;
-	bool spotted = false;
+	public bool spotted = false;
 
 	float maxSpread = 5;
 	public float spread = 0;
@@ -86,8 +86,8 @@ public class Bug : MonoBehaviour {
 		trail = trailObj.AddComponent<TrailRenderer> ();
 		trail.material = this.renderer.material;
 		trail.time = 5;
-		trail.startWidth = transform.localScale.x;
-		trail.endWidth = transform.localScale.x;
+		trail.startWidth = transform.localScale.x/2;
+		trail.endWidth = 0;
 
 		SetColor (Color.white);
 		float t = 0;
