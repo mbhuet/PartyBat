@@ -30,7 +30,7 @@ public class SongEcho : MonoBehaviour {
 	IEnumerator SongPulse(){
 		while (true) {
 			StartCoroutine ("Pulse");
-			yield return new WaitForSeconds (3.557f);
+			yield return new WaitForSeconds (3.2f);
 		}
 	}
 
