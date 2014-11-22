@@ -54,7 +54,15 @@ public class GameManager : MonoBehaviour {
 		timeText.text = "0";
 		Time.timeScale = 0;
 		message.enabled = true;
-		message.text = "Party Harder";
+		if (player.GetComponent<eating>().score >= 30) 
+		{
+			message.text = "You Partied Hard!";
+		} 
+		else 
+		{
+			message.text = "Party Harder";
+		}
+
 	}
 
 
