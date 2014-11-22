@@ -27,7 +27,7 @@ public class eating : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log ("Collision enter");
+//		Debug.Log ("Collision enter");
 		if (other.tag == "Bug") {
 			Bug bug = other.GetComponent<Bug>();
 			Eat(bug);
