@@ -34,13 +34,13 @@ public class eating : MonoBehaviour {
 		}
 		if (other.tag == "tree") 
 		{
-			Debug.Log("Tree!");
 			score -= 10;
 			if (score < 0) score = 0;
 			for (int i = 0; i< 10; i++) {
-				Vector3 pos = new Vector3(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
-				pos *= 20;
-				//GameObject.Instantiate(bug, pos, Quaternion.identity);
+				Vector3 pos = new Vector3(transform.position.x+Random.insideUnitCircle.x, transform.position.y+Random.insideUnitCircle.y);
+				pos *= 3;
+				GameObject.Instantiate(bug, pos, Quaternion.identity);
+				Debug.Log("Spawn");
 			}
 			
 		}
