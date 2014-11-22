@@ -9,12 +9,19 @@ public class SongEcho : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartCoroutine ("SongPulse");
+		audio.Play ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-	
+		if (!audio.isPlaying) 
+		{
+			StopCoroutine("SongPulse");
+			StartCoroutine ("SongPulse");
+			Debug.Log("Pulse");
+			audio.Play ();
+		}
 	}
 
 
@@ -33,7 +40,7 @@ public class SongEcho : MonoBehaviour {
 		
 		Light l = (GameObject.Instantiate (light, this.transform.position, Quaternion.identity) as GameObject).GetComponent<Light>();
 		
-		float maxSize = 10;
+		float maxSize = 15;
 		float waveSpeed = 40;
 		GameObject wave = GameObject.Instantiate (soundWave, this.transform.position, Quaternion.identity) as GameObject;
 		float t = 0;

@@ -13,15 +13,10 @@ public class Bat : MonoBehaviour {
 	private Vector2 backwardDir;
 	Vector2 direction;
 
-	public AudioClip songClip;
 
-	public GameObject soundWave;
-
-	public GameObject light;
 
 	Vector3 moveDirection;
 
-	GameObject wave;
 	//ParticleSystem shockwave;
 
 	void Start () {
@@ -30,7 +25,6 @@ public class Bat : MonoBehaviour {
 		//wave = transform.FindChild ("Sound").gameObject;
 		//wave.transform.localScale = Vector3.zero;
 		//shockwave = transform.FindChild ("Shockwave").particleSystem;
-		StartCoroutine ("Song");
 	}
 	
 	// Update is called once per frame
@@ -89,44 +83,7 @@ public class Bat : MonoBehaviour {
 		//end movement
 	}
 
-	IEnumerator Echo(){
-		//shockwave.Emit (1);
 
-		Light l = (GameObject.Instantiate (light, this.transform.position, Quaternion.identity) as GameObject).GetComponent<Light>();
-
-		float maxSize = 10;
-		float waveSpeed = 40;
-		GameObject wave = GameObject.Instantiate (soundWave, this.transform.position, Quaternion.identity) as GameObject;
-		float t = 0;
-		while (t<maxSize) {
-			t+= Time.deltaTime * waveSpeed;
-			wave.transform.localScale = Vector3.one * t;
-			yield return null;
-		}
-
-		wave.transform.localScale = Vector3.zero;
-		GameObject.Destroy (wave);
-	}
-
-	void Eat(Bug bug){
-		GameObject.Destroy (bug.gameObject);
-}
-
-	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log ("Collision enter");
-		if (other.tag == "Bug") {
-			Bug bug = other.GetComponent<Bug>();
-			Eat(bug);
-		}
-	}
-
-	IEnumerator Song(){
-		while (true) {
-						audio.PlayOneShot (songClip);
-						StartCoroutine ("Echo");
-						yield return new WaitForSeconds (songClip.length);
-				}
-	}
 
 }
 		  
