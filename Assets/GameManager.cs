@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour {
 		timeText.text = "0";
 		Time.timeScale = 0;
 		message.enabled = true;
+
 		if (player.GetComponent<eating>().score >= 30) 
 		{
 			message.text = "You're a legend, Party Bat";
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour {
 		{
 			message.text = "Party Harder";
 		}
-
+	
 	}
 
 
