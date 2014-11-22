@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject bug;
 	GUIText timeText;
 	GUIText message;
+	public GameObject player;
 
 	bool ended = false;
 
