@@ -15,15 +15,15 @@ public class eating : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		text.text = "Bugs Eaten: " + score;
-		
-		if (score < 0) score = 0;
+
+
 	}
 
 	void Eat(Bug bug){
 		GameObject.Destroy (bug.gameObject);
 		particleSystem.Emit(10);
-		AudioSource.PlayClipAtPoint(eatSound, transform.position);
 		score++;
+		AudioSource.PlayClipAtPoint(eatSound, transform.position);
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -36,6 +36,7 @@ public class eating : MonoBehaviour {
 		{
 			Debug.Log("Tree!");
 			score -= 10;
+			if (score < 0) score = 0;
 			for (int i = 0; i< 10; i++) {
 				Vector3 pos = new Vector3(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
 				pos *= 20;
