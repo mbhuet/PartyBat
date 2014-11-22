@@ -19,7 +19,7 @@ public class eating : MonoBehaviour {
 
 	void Eat(Bug bug){
 		GameObject.Destroy (bug.gameObject);
-		particleSystem.Emit(4);
+		particleSystem.Emit(10);
 		score++;
 	}
 
