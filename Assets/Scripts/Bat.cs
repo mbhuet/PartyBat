@@ -13,8 +13,6 @@ public class Bat : MonoBehaviour {
 	private Vector2 backwardDir;
 	Vector2 direction;
 
-
-
 	Vector3 moveDirection;
 
 	//ParticleSystem shockwave;
