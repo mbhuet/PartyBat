@@ -42,7 +42,7 @@ public class eating : MonoBehaviour {
 			if (score < 0) score = 0;
 			for (int i = 0; i< 10; i++) {
 				Vector3 pos = new Vector3(transform.position.x+Random.insideUnitCircle.x, transform.position.y+Random.insideUnitCircle.y);
-				pos *= 3;
+				pos *= 1;
 				GameObject.Instantiate(bug, pos, Quaternion.identity);
 				Debug.Log("Spawn");
 			}
