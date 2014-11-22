@@ -17,10 +17,11 @@ public class Bug : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		moveDir = Random.insideUnitSphere;
-		moveDir.z = 0;
-		moveDir.Normalize ();
-	
+		//moveDir = Random.insideUnitSphere;
+		//moveDir.z = 0;
+		//moveDir.Normalize ();
+
+		this.transform.eulerAngles = new Vector3 (0, 0, Random.Range (0, 360));
 		SetColor (Color.black);
 		//StartCoroutine ("Show");
 	}
